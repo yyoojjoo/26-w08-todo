@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f3f5ef" />
+    <meta name="description" content="오늘의 할 일을 정리하고 진행 상황을 확인하세요." />
+    <title>오늘의 할 일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="오늘의 할 일 홈">
+          <span class="brand-mark" aria-hidden="true">오늘</span>
+          <span>DAYLOG</span>
+        </a>
+        <p class="today-date" id="today-date"></p>
+      </header>
+
+      <section class="intro" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> YOUR DAILY SPACE</p>
+          <h1 id="page-title">오늘, 하나씩<br /><span>해내면 충분해요.</span></h1>
+          <p class="intro-note">작은 체크 하나가 하루의 리듬을 만듭니다.</p>
+        </div>
+
+        <section class="progress-panel" aria-label="오늘의 진행 상황">
+          <div class="progress-heading">
+            <span>오늘의 진행률</span>
+            <span class="progress-percent" id="progress-percent">0%</span>
+          </div>
+          <div
+            class="progress-track"
+            id="progress-track"
+            role="progressbar"
+            aria-label="완료한 할 일"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+          >
+            <span class="progress-fill" id="progress-fill"></span>
+          </div>
+          <p class="progress-count"><strong id="completed-count">0</strong><span> / </span><span id="total-count">0</span> 완료</p>
+        </section>
+      </section>
+
+      <section class="task-workspace" aria-label="할 일 관리">
+        <form class="task-form" id="task-form">
+          <div class="task-entry-main">
+            <label class="sr-only" for="task-input">새 할 일</label>
+            <span class="input-plus" aria-hidden="true">+</span>
+            <input
+              id="task-input"
+              name="task"
+              type="text"
+              maxlength="500"
+              placeholder="오늘 할 일을 적어보세요"
+              autocomplete="off"
+              aria-describedby="form-message"
+            />
+          </div>
+          <div class="task-entry-controls">
+            <label class="date-field" for="task-date">
+              <span aria-hidden="true">▦</span>
+              <span class="sr-only">날짜 선택</span>
+              <input id="task-date" name="date" type="date" aria-label="할 일 날짜 선택" />
+            </label>
+            <button class="add-button" type="submit"><span>추가</span><span aria-hidden="true">↗</span></button>
+          </div>
+        </form>
+        <p class="form-message" id="form-message" aria-live="polite"></p>
+
+        <div class="list-toolbar">
+          <div class="list-title-group">
+            <h2>할 일 목록</h2>
+            <span class="task-total-pill" id="list-total">0</span>
+          </div>
+          <div class="filters" role="group" aria-label="할 일 필터">
+            <button class="filter-button is-selected" type="button" aria-pressed="true" data-filter="all">전체</button>
+            <button class="filter-button" type="button" aria-pressed="false" data-filter="active">미완료</button>
+            <button class="filter-button" type="button" aria-pressed="false" data-filter="pending">대기</button>
+            <button class="filter-button" type="button" aria-pressed="false" data-filter="completed">완료</button>
+          </div>
+        </div>
+
+        <div class="task-list" id="task-list" aria-live="polite" aria-relevant="additions removals text"></div>
+        <footer class="list-footer">
+          <span class="footer-spark" aria-hidden="true">✳</span>
+          <span id="remaining-message">서두르지 않아도 괜찮아요.</span>
+          <span class="footer-caption">ONE THING AT A TIME</span>
+        </footer>
+      </section>
+      <p class="storage-note"><span aria-hidden="true">↳</span> 할 일은 이 브라우저에 자동 저장됩니다.</p>
+    </main>
+  </body>
+</html>
